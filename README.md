@@ -6,7 +6,9 @@ Main purpose of this repository is to help people in building FFmpeg, mainly on 
 This kit is suposed to work with Android NDK version **r14b for Linux or OSX**. Version of FFmpeg in repo is **3.2.4**. Please, note that 
 versions are quite important here, since it's not guaranteed that with other version of FFmpeg and/or NDK shared libs 
 would even compile. If you want to change version of FFmpeg and/or NDK you're completely free to do this, althought I should aware you 
-that this might be not a good idea. 
+that this might be not a good idea.
+
+Also, be sure to use an AWS EC2 instance running Ubuntu 16.04.
 
 ## Setup
 Quite small amount of setup is needed, basically all you need is to download appropriate NDK version. As written above, I've used 
@@ -14,6 +16,8 @@ version r14b for Linux.
 As soon as you got NDK, unpack it to disc (please, note, that Linux version have fromat .bin which would require 7z from you), then 
 **place FFmpeg from this repo under NDK/sources** (so path to FFmpeg would be NDK/sources/ffmpeg), JNI (Android project for NDK-build) 
 **have to be in the same directory in which NDK is located**. 
+
+Run the script: **setup.sh**
 
 Also, I have written JNI wrapper which is called videokit.c (it's hopefully soon will be released thought Maven
 as separate Android library) and you have to change signature of function "run" in order to match class' package from 

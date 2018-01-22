@@ -9,6 +9,13 @@ export PROJECT_LIBS="$(dirname "${NDK}")/JNI/app/libs"
 export ADDI_CFLAGS="-fPIC"
 export ADDI_LDFLAGS="-Wl,-z,defs"
 export COMMON="--disable-static --disable-programs --disable-doc --enable-shared --enable-protocol=file --enable-pic --enable-small"
+
+echo "DIR: $DIR"
+echo "NDK: $NDK"
+echo "PATH: $PATH"
+echo "PROJECT_JNI: $PROJECT_JNI"
+echo "PROJECT_LIBS: $PROJECT_LIBS"
+
 ./build_armeabi.sh
 ./build_armeabi-v7a.sh
 ./build_arm64-v8a.sh
