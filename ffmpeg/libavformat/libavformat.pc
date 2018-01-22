@@ -1,4 +1,4 @@
-prefix=/Users/iljakosynkin/Documents/Projects/FFmpeg-Development-Kit/android-ndk-r14b/sources/ffmpeg/android/x86_64
+prefix=/home/ubuntu/android-ndk-r14b/sources/ffmpeg/android/x86_64
 exec_prefix=${prefix}
 libdir=${prefix}/lib
 includedir=${prefix}/include

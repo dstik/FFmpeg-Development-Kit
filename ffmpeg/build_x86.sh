@@ -1,6 +1,6 @@
 #!/bin/bash
 SYSROOT=$NDK/platforms/android-14/arch-x86/
-TOOLCHAIN=$NDK/toolchains/x86-4.9/prebuilt/darwin-x86_64
+TOOLCHAIN=$NDK/toolchains/x86-4.9/prebuilt/linux-x86_64
 rm -f $(pwd)/compat/strtod.o
 function build_one
 {
