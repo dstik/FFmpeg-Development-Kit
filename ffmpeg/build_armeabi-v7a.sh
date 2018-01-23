@@ -4,10 +4,34 @@ TOOLCHAIN=$NDK/toolchains/arm-linux-androideabi-4.9/prebuilt/linux-x86_64
 rm -f $(pwd)/compat/strtod.o
 function build_one
 {
-./configure --prefix=$PREFIX $COMMON $CONFIGURATION --cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- --target-os=linux --arch=arm --enable-cross-compile --sysroot=$SYSROOT --extra-cflags="-Os -marm $ADDI_CFLAGS" --extra-ldflags="$ADDI_LDFLAGS"
+./configure \
+--prefix=$PREFIX $COMMON $CONFIGURATION \
+--cross-prefix=$TOOLCHAIN/bin/arm-linux-androideabi- \
+--target-os=linux \
+--arch=arm \
+--enable-cross-compile \
+--enable-libx264 \
+--enable-libass \
+--enable-libfreetype \
+--enable-libfribidi \
+--enable-libmp3lame \
+--enable-fontconfig \
+--enable-pthreads \
+--disable-debug \
+--disable-ffserver \
+--enable-version3 \
+--enable-hardcoded-tables \
+--disable-ffplay \
+--disable-ffprobe \
+--enable-gpl \
+--enable-yasm \
+--disable-doc \
+--sysroot=$SYSROOT \
+--extra-cflags="-Os -marm $ADDI_CFLAGS" \
+--extra-ldflags="$ADDI_LDFLAGS"
 
 make clean
-make -j2
+make -j${NUMBER_OF_CORES}
 make install
 }
 

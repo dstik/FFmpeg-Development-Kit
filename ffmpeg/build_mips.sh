@@ -4,7 +4,39 @@ TOOLCHAIN=$NDK/toolchains/mipsel-linux-android-4.9/prebuilt/linux-x86_64
 rm -f $(pwd)/compat/strtod.o
 function build_one
 {
-./configure --prefix=$PREFIX --nm=$TOOLCHAIN/bin/mipsel-linux-android-nm --extra-libs="-lgcc" --enable-cross-compile --cc=$TOOLCHAIN/bin/mipsel-linux-android-gcc $COMMON $CONFIGURATION --cross-prefix=$TOOLCHAIN/bin/mipsel-linux-android- --target-os=linux --disable_asm --arch=mips --sysroot=$SYSROOT --disable-mipsdspr1 --disable-mipsdspr2 --disable-mipsfpu --extra-cflags="-O3 -DANDROID -Dipv6mr_interface=ipv6mr_ifindex -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing $ADDI_CFLAGS" --extra-ldflags="-Wl,-rpath-link=$SYSROOT/usr/lib -L$SYSROOT/usr/lib -nostdlib -lc -lm -ldl -llog $ADDI_LDFLAGS" --enable-zlib
+./configure \
+--prefix=$PREFIX \
+--nm=$TOOLCHAIN/bin/mipsel-linux-android-nm \
+--extra-libs="-lgcc" \
+--enable-cross-compile \
+--cc=$TOOLCHAIN/bin/mipsel-linux-android-gcc $COMMON $CONFIGURATION \
+--cross-prefix=$TOOLCHAIN/bin/mipsel-linux-android- \
+--target-os=linux \
+--disable_asm \
+--arch=mips \
+--sysroot=$SYSROOT \
+--disable-mipsdspr1 \
+--disable-mipsdspr2 \
+--disable-mipsfpu \
+--enable-libx264 \
+--enable-libass \
+--enable-libfreetype \
+--enable-libfribidi \
+--enable-libmp3lame \
+--enable-fontconfig \
+--enable-pthreads \
+--disable-debug \
+--disable-ffserver \
+--enable-version3 \
+--enable-hardcoded-tables \
+--disable-ffplay \
+--disable-ffprobe \
+--enable-gpl \
+--enable-yasm \
+--disable-doc \
+--extra-cflags="-O3 -DANDROID -Dipv6mr_interface=ipv6mr_ifindex -fasm -Wno-psabi -fno-short-enums -fno-strict-aliasing $ADDI_CFLAGS" \
+--extra-ldflags="-Wl,-rpath-link=$SYSROOT/usr/lib -L$SYSROOT/usr/lib -nostdlib -lc -lm -ldl -llog $ADDI_LDFLAGS" \
+--enable-zlib
 
 make clean
 make -j2

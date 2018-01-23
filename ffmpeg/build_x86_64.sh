@@ -4,10 +4,34 @@ TOOLCHAIN=$NDK/toolchains/x86_64-4.9/prebuilt/linux-x86_64
 rm -f $(pwd)/compat/strtod.o
 function build_one
 {
-./configure --prefix=$PREFIX $COMMON $CONFIGURATION --cross-prefix=$TOOLCHAIN/bin/x86_64-linux-android- --target-os=linux --arch=x86_64 --disable-asm --sysroot=$SYSROOT --extra-cflags="-O3 -Wall -pipe -DANDROID -DNDEBUG  -march=atom -msse3 -ffast-math -mfpmath=sse $ADDI_CFLAGS" --extra-ldflags="-lm -lz -Wl,--no-undefined -Wl,-z,noexecstack $ADDI_LDFLAGS"
+./configure \
+--prefix=$PREFIX $COMMON $CONFIGURATION \
+--cross-prefix=$TOOLCHAIN/bin/x86_64-linux-android- \
+--target-os=linux \
+--arch=x86_64 \
+--disable-asm \
+--sysroot=$SYSROOT \
+--enable-libx264 \
+--enable-libass \
+--enable-libfreetype \
+--enable-libfribidi \
+--enable-libmp3lame \
+--enable-fontconfig \
+--enable-pthreads \
+--disable-debug \
+--disable-ffserver \
+--enable-version3 \
+--enable-hardcoded-tables \
+--disable-ffplay \
+--disable-ffprobe \
+--enable-gpl \
+--enable-yasm \
+--disable-doc \
+--extra-cflags="-O3 -Wall -pipe -DANDROID -DNDEBUG  -march=atom -msse3 -ffast-math -mfpmath=sse $ADDI_CFLAGS" \
+--extra-ldflags="-lm -lz -Wl,--no-undefined -Wl,-z,noexecstack $ADDI_LDFLAGS"
 
 make clean
-make -j2
+make -j${NUMBER_OF_CORES}
 make install
 }
 
